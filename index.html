@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>Resume</title>
+</head>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<style>
+    /*------------init-------------*/
+    :root {
+        --header-height: 30px;
+        --footer-height: 30px;
+        --left-height: 350px;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: var(--theme-background-primary);
+        min-height: 100vh;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    /*------------themes-------------*/
+    .lightTheme {
+        --theme-color-primary: #292b2b;
+        --theme-color-secondary: #4c4b4b;
+        --theme-color-icon: #1c8dad;
+        --theme-background-primary: #ededed;
+        --theme_background: linear-gradient(90deg, #f1f4f3, #f2f4ec, #f1f4f3);
+        --theme-shadow-primary: 2px 3px 16px 0 #99a9a954;
+        --theme-shadow-element: 0 0 8px -2px #b5b5b585;
+        --theme-color-gray: darkgray;
+        --theme-color-lightgray: lightgray;
+    }
+
+    .darkTheme {
+        --theme_background: #292c2d;
+        --theme-color-icon: #4d9898;
+        --theme-color-primary: #c5c539;
+        --theme-color-secondary: #66988e;
+        --theme-background-primary: #212427;
+        --theme-shadow-primary: -2px -2px 3px 0 #313131, 2px 3px 12px 0 #212121;
+        --theme-shadow-element: 0 0 8px -2px #151515;
+        --theme-color-gray: #676f66;
+        --theme-color-lightgray: #191717;
+    }
+
+    /*------------helpers-------------*/
+
+    .m {
+        margin: 1rem;
+    }
+
+    .p {
+        padding: 1rem;
+    }
+
+    .br {
+        border-radius: .5rem;
+    }
+
+    .flex {
+        display: flex;
+    }
+
+    .flex-wrap {
+        flex-wrap: wrap;
+    }
+
+    .f-ai-center {
+        align-items: center;
+    }
+
+    .f1 {
+        flex: 1;
+    }
+
+    .f2 {
+        flex: 2;
+    }
+
+    .f5 {
+        flex: 5;
+    }
+
+    .f-col {
+        flex-direction: column;
+    }
+
+    .shadow {
+        color: var(--theme-color-primary);
+        background: var(--theme_background);
+        box-shadow: var(--theme-shadow-primary);
+    }
+
+    /*------------main blocks-------------*/
+
+
+    .main {
+        max-width: 1600px;
+        overflow: hidden;
+    }
+
+    .section {
+        flex-basis: var(--left-height);
+    }
+
+    .header {
+        display: flex;
+        justify-content: flex-end;
+        box-sizing: border-box;
+        width: 100%;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .leftContainer {
+        order: 1;
+        flex-basis: var(--left-height);
+
+    }
+
+    .centerContainer {
+        order: 2;
+        flex: 1;
+    }
+
+    .rightContainer {
+        order: 3;
+        flex-basis: var(--left-height);
+    }
+
+    /*------------custom scroll-------------*/
+    .scroll {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .scroll::-webkit-scrollbar {
+        width: .5rem;
+    }
+
+    .scroll::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: var(--theme-color-gray);
+    }
+
+    /*------------components-------------*/
+
+    .photo-container {
+        padding-top: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .photo-container::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: url("https://lamcdn.net/lookatme.ru/post-cover/qbbuhQ3uXZ-ab9K46VUAlg-default.jpg") center;
+        background-size: cover;
+    }
+
+    .tags-container {
+        display: flex;
+        flex-wrap: wrap;
+        padding: .25rem;
+        box-shadow: var(--theme-shadow-element) inset;
+        border-radius: .5rem;
+        background: var(--theme-background-primary);
+    }
+
+    .tagSkill {
+        border-radius: .5rem;
+        padding: .5rem;
+        margin: .5rem;
+        color: #2f963c;
+        box-shadow: var(--theme-shadow-element);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: var(--theme_background);
+    }
+
+    .levelContainer {
+        height: 3px;
+        border-radius: 2px;
+        overflow: hidden;
+        width: 100%;
+        background-color: var(--theme-color-lightgray);
+        margin-top: .2rem;
+    }
+
+    .levelSkill {
+        height: 100%;
+        background-color: var(--theme-color-icon);
+    }
+
+    .labelContainer {
+        color: var(--theme-color-secondary);
+        margin-bottom: .5rem;
+    }
+
+    .separator {
+        color: var(--theme-color-gray);
+        font-size: .8rem;
+        text-align: center;
+        flex: 1;
+    }
+
+    .projectContainer {
+        margin-top: 1rem;
+    }
+
+    .projectContainer:not(:last-child) {
+        border-bottom: 2px solid var(--theme-color-lightgray);
+    }
+
+    .projectElement {
+        border-top: 2px solid var(--theme-color-lightgray);
+        padding: 1rem 0;
+    }
+
+    .labelItem {
+        color: var(--theme-color-gray);
+        font-size: .8rem;
+        min-width: 6rem;
+        max-width: 6rem;
+        text-align: end;
+        margin-right: .5rem;
+        padding-top: .13rem;
+    }
+
+    .chapter {
+        text-align: center;
+        color: var(--theme-color-icon);
+        font-size: 1.2rem;
+        padding-bottom: 0;
+    }
+
+    .textContent {
+        color: var(--theme-color-secondary);
+    }
+
+    /*------------icons-------------*/
+    .withBeforeIcon {
+        display: flex;
+        align-content: center;
+        align-items: center;
+    }
+
+    .withBeforeIcon:before {
+        font-family: 'Material Icons', serif;
+        content: "";
+        width: 1.4em;
+        height: 100%;
+        font-size: 1.2em;
+        color: var(--theme-color-icon);
+        text-align: left;
+    }
+
+    .iconWork:before {
+        content: "work";
+    }
+
+    .iconProject:before {
+        content: "folder";
+    }
+
+    .iconSchool:before {
+        content: "school";
+    }
+
+    .iconCert:before {
+        content: "verified";
+    }
+
+    .iconPerson:before {
+        content: "assignment_ind";
+    }
+
+    .iconEmail:before {
+        content: "email";
+    }
+
+    .iconPhone:before {
+        content: "phone_in_talk";
+    }
+
+    .iconLocation:before {
+        content: "place";
+    }
+
+    .iconAge:before {
+        content: "today";
+    }
+
+    .iconWorkPosition:before {
+        content: "location_searching";
+    }
+
+    .iconCheck:before {
+        content: "check";
+    }
+
+    .iconDark:before {
+        content: "dark_mode";
+    }
+
+    .iconLight:before {
+        content: "light_mode";
+    }
+
+    .iconLanguage:before {
+        content: "language";
+    }
+
+    .iconHard:before {
+        content: "poll";
+    }
+
+    .iconSoft:before {
+        content: "self_improvement";
+    }
+
+    .iconAboutSelf:before{
+        content: "psychology";
+    }
+
+    /*------------data classes-------------*/
+    .my_name,
+    .project_name {
+        font-size: 1.2rem;
+        color: var(--theme-color-primary);
+    }
+
+    .labelBlock,
+    .company_name,
+    .edu_institution,
+    .edu_certificate {
+        font-size: 1.4rem;
+        color: var(--theme-color-primary);
+    }
+
+    /*------------buttons-------------*/
+    .button {
+        min-width: 4rem;
+        height: 4rem;
+        outline: none;
+        border: none;
+        padding: .5rem;
+        color: var(--theme-color-icon);
+        background: var(--theme_background);
+        transition: .1s;
+        font-family: 'Open Sans', sans-serif;
+        font-size: .9rem;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .button:before {
+        font-size: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .button:hover,
+    .button:active {
+        background: var(--theme-background-primary);
+    }
+
+    .button:active {
+        box-shadow: var(--theme-shadow-element) inset;
+    }
+
+    .button:last-child {
+        margin: 0;
+    }
+
+    .rightContainer .aboutMe {
+        display: none;
+    }
+
+    /*------------media queries-------------*/
+
+    @media (max-width: 1300px) {
+        .leftContainer {
+            order: 1;
+        }
+
+        .rightContainer {
+            order: 2;
+            flex: 1;
+        }
+
+        .centerContainer {
+            order: 3;
+            flex: 100%;
+        }
+
+        .rightContainer .aboutMe{
+            display: block;
+        }
+
+        #life .aboutMe {
+            display: none;
+        }
+    }
+
+    @media (max-width: 700px) {
+        .leftContainer {
+            flex: 100%;
+        }
+
+        .rightContainer {
+            flex: 100%;
+        }
+
+        .company_name, .edu_institution, .edu_certificate {
+            font-size: 1.2rem;
+        }
+    }
+
+    @media (max-width: 420px) {
+        .button.withBeforeIcon {
+            font-size: .7rem;
+        }
+
+        .labelContainer {
+            flex-direction: column;
+        }
+
+        .labelItem {
+            text-align: start;
+        }
+    }
+
+</style>
+<body class="lightTheme scroll">
+<div id="header" class="header shadow">
+    <button id="experience" class="button withBeforeIcon iconWork"></button>
+    <button id="education" class="button  withBeforeIcon iconSchool"></button>
+    <button id="certification" class="button  withBeforeIcon iconCert"></button>
+    <button id="language" class="button withBeforeIcon iconLanguage"></button>
+    <button id="theme" class="button withBeforeIcon iconLight"></button>
+</div>
+<div class="flex f-col f-ai-center">
+    <div class="main flex flex-wrap">
+        <div class="leftContainer">
+            <div class="flex f-col">
+                <div class="shadow m p br">
+                    <div class="photo-container br">
+                    </div>
+                    <div id="aboutMe">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="centerContainer">
+            <div id="life" class="section f1">
+            </div>
+        </div>
+        <div id="rightContainer" class="rightContainer">
+        </div>
+    </div>
+</div>
+<script>
+
+    const labelsName_ru = {
+        ui_lang: "ru",
+
+        ui_experience: "Опыт работы",
+        ui_education: "Образование",
+        ui_cert: "Сертификаты",
+        ui_hard_skills: "Технологии",
+        ui_soft_skills: "Навыки",
+        ui_about: "О себе",
+
+        my_name: "имя",
+        age: "возраст",
+        eMail: "e-mail",
+        tel: "телефон",
+
+        company_name: "компания",
+        company_info: "о компании",
+        company_position: "должность",
+
+        projects: "проекты",
+        project_name: "проект",
+        project_info: "о проекте",
+
+        my_activity: "мой вклад",
+        period: "период",
+        date: "дата",
+        skills: "технологии",
+        city: "город",
+        link: "ссылка",
+        address: "адресс",
+        full: "полностью",
+
+        edu_institution: "учебное заведение",
+        edu_level: "уровень",
+        edu_faculty: "факультет",
+        edu_specialty: "специальность",
+        edu_certificate: "сертификат",
+        edu_vendor: "вендор",
+    }
+
+    const labelsName_en = {
+        ui_lang: "en",
+
+        ui_experience: "Experience",
+        ui_education: "Education",
+        ui_cert: "Certification",
+        ui_hard_skills: "Hard skills",
+        ui_soft_skills: "Soft skills",
+        ui_about: "About me",
+
+        my_name: "name",
+        age: "age",
+        eMail: "e-mail",
+        tel: "phone",
+
+        company_name: "company",
+        company_info: "about company",
+        company_position: "position",
+
+        projects: "projects",
+        project_name: "project",
+        project_info: "about project",
+
+        my_activity: "my contribution",
+        period: "period",
+        date: "date",
+        skills: "technology",
+        city: "city",
+        link: "link",
+        address: "address",
+        full: "full",
+
+        edu_institution: "educational institution",
+        edu_level: "level",
+        edu_faculty: "faculty",
+        edu_specialty: "specialty",
+        edu_certificate: "certificate",
+        edu_vendor: "vendor",
+    }
+
+    function getEge(day, month, year, lang) {
+        const birthDate = new Date(year, month - 1, day);
+        const date = new Date();
+        date.setTime(Date.now() - birthDate.getTime());
+        const years = date.getFullYear() - 1970;
+        let suffix = "years old";
+        if (lang === "ru")
+            switch (years % 10) {
+                case 1:
+                    suffix = "год"
+                    break;
+                case 0:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                    suffix = "лет"
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                    suffix = "года"
+                    break;
+
+            }
+        return years + " " + suffix;
+    }
+
+    const about_me_ru = [{
+        my_name: "Андрей Чемезов",
+        age: getEge(8, 8, 1988, "ru"),
+        speciality: "Фронтент разработчик",
+        work_type: "Удаленная работа",
+        eMail: "a.a.chemezov@gmail.com",
+        tel: "+скрыт",
+        city: "Иркутск",
+        skills: [["Русский", 99], ["English", 15]],
+    }];
+
+    const about_me_en = [{
+        my_name: "Andrew Chemezov",
+        age: getEge(8, 8, 1988, "en"),
+        speciality: "Frontend developer",
+        work_type: "Remote work",
+        eMail: "a.a.chemezov@gmail.com",
+        tel: "hidden",
+        city: "Irkutsk",
+        skills: [["Russian", 99], ["English", 15]],
+    }];
+
+    const aboutMe_ru = `Есть опыт как в бекенде (Java, Spring), так и фронтенде. На данный момент ближе фронтенд.
+Суммарный опыт во фронтенде: JS, React ~ 2 года ; TypeScript, Redux ~ 1 год.
+Комфортно работать в вечернее время, т.е. до 11~12 ирк (~18:00 МСК).
+Рассматриваю вакансии с официальным трудоустройство по ТК РФ.
+
+Есть опыт в научной сфере (алгоритмы, графы, написание и публикация статей).
+
+Хобби: Digital Art, велопрогулки`;
+
+    const aboutMe_en = `There is experience in both backend (Java, Spring) and frontend. At the moment, the frontend is closer.
+Total experience in the frontend: JS, React ~ 2 years; TypeScript, Redux ~ 1 year.
+It is comfortable to work in the evening, i.e. until 11 ~ 12 IRK (18:00 MSK).
+
+Has experience in the scientific field (algorithms, graphs, writing and publishing articles).
+
+Hobbies: Digital Art, cycling`;
+
+
+    const hard_skills = [["JavaScript", 85], ["React", 70], ["Redux", 75],["TypeScript", 85], ["CSS3", 65], ["HTML5", 65],"Git", "Photoshop", "CorelDraw"];
+
+    const soft_skills_ru = ["Умение изучать и применять на практике новые технологии", "Умение работать в команде", "Умение решать сложные задачи", "Стрессоустойчивость", " Самостоятельность"];
+    const soft_skills_en = ["Ability to study and apply in practice new technologies", "Ability to work in a team", "Ability to solve complex problems", "Stress resistance", "Independence"];
+
+    const work_places_ru = [
+        {
+            company_name: "Conferoom",
+            company_info: "Стартап в сфере облачных технологий совместной работы",
+            company_position: "Инженер-разработчик",
+            period: "02.2019 - 09.2019",
+            project_info: `Облачная платформа онлайн-встреч (аудио и видео общение, работа с доской, демонcтрация экрана, чаты, и др )`,
+            my_activity: `Разработка клиентской части. Реализация оконного интерфейса, позволяющего настраивать отображение функциональных блоков системы, исходя из предпочтений пользователя;
+Реализация операции с окнами: изменение размера и положения, сворачивание, закрытие, разворачивание на весь экран;
+Реализация гибкого макета из окон, переключение между макетами`,
+            skills: ["JavaScript", "React", "Meteor", "Ruby", "RubyOnRail", "CSS3", "HTML5", "Git"],
+        },
+        {
+            company_name: "CROC inc.",
+            company_info: "Информационные технологии, системная интеграция, интернет...",
+            company_position: "Младший инженер-разработчик",
+            period: "02.2019 - 09.2019",
+            projects: [
+                {
+                    project_name: "АСУТД",
+                    full: "Автоматизированная система управления технической документацией",
+                    project_info: `Управление процессами разработки, ведения, хранения и предоставления актуальной технической документации.`,
+                    my_activity: "Разработка и отладка программного кода",
+                    period: "02.2019 - 09.2019",
+                    skills: ["Java", "Spring", "Maven", "CSS3", "HTML"],
+                },
+                {
+                    project_name: "Цифровой Рабочий",
+                    project_info: `
+Разработка ситуационного центра, предназначенного для предупреждения внештатных ситуаций на территории предприятий,
+и сбора статистических данных о перемещении сотрудников. Интеграция с различными шинами данных,
+внешними датчиками и устройствами, системами фото/видео распознавания.`,
+                    my_activity: "разработка и отладка программного кода",
+                    period: "02.2019 - 09.2019",
+                    skills: ["JavaScript", "React", "Redux", "CSS3", "HTML5", "Git"],
+                }]
+        }
+    ];
+
+    const work_places_en = [
+        {
+            company_name: "Conferoom",
+            company_info: "Startup. Information Technology, Systems Integration, Internet ...",
+            company_position: "Developer Programmer",
+            period: "02.2019 - 09.2019",
+            my_activity: `Development of the client side of the cloud platform for online meetings (audio and video communication, working with a whiteboard, screen sharing, chats, etc.).
+- Implementation of a windowed interface that allows you to customize the display of functional blocks of the system, based on user preferences;
+- Implementation of operations with windows: resizing and positioning, minimizing, closing, maximizing to full screen;
+- Implementation of flexible layout from windows, switching between layouts`,
+            skills: ["JavaScript", "React", "Meteor", "Ruby", "RubyOnRail", "CSS3", "HTML5", "Git"],
+        },
+        {
+            company_name: "CROC inc.",
+            company_info: "Information Technology, Systems Integration, Internet ...",
+            company_position: "Junior Development Engineer",
+            period: "02.2019 - 09.2019",
+            projects: [
+                {
+                    project_name: "ASUTD",
+                    full: "Automated technical documentation management system",
+                    project_info: `Management of the development, maintenance, storage and provision of up-to-date technical documentation.`,
+                    my_activity: "Developing and debugging program code",
+                    period: "02.2019 - 09.2019",
+                    skills: ["Java", "Spring", "Maven", "CSS3", "HTML"],
+                },
+                {
+                    project_name: "Digital Worker",
+                    project_info: `
+Development of a situational center designed to prevent emergency situations on the territory of enterprises,
+and collecting statistics on the movement of employees. Integration with various data buses,
+external sensors and devices, photo / video recognition systems.`,
+                    my_activity: "development and debugging of program code",
+                    period: "02.2019 - 09.2019",
+                    skills: ["JavaScript", "React", "Redux", "CSS3", "HTML5", "Git"],
+                }]
+        }
+    ];
+
+    const educations_ru = [
+        {
+            edu_institution: "ИСЭМ СО РАН",
+            full: "Институт Систем Энергетики им. Л.А. Мелентьева",
+            edu_level: "Аспирантура (без защиты кандидатской)",
+            period: "09.2014 - 09.2018",
+        },
+        {
+            edu_institution: "ИрНИТУ",
+            full: "Иркутский Национальный Исследовательский Технический Университет",
+            edu_level: "Высшее. Инженер",
+            edu_faculty: "Кибернетика",
+            edu_specialty: "ЭВМ, системы и сети",
+            period: "09.2008 - 09.2014",
+        },
+
+    ]
+    const certification_ru = [
+        {
+            edu_certificate: "Oracle Certified Associate, Java SE 8 Programmer",
+            edu_vendor: "Oracle",
+            link: "https://www.credly.com/badges/7aaefaa6-dbe0-4d71-9904-42c8b507e148",
+            date: "05.2019",
+            skills: ["Java", "Java 8 Date And Time API", "Java SE 8", "JDK 8", "Lambda Expressions"],
+        },
+        {
+            edu_certificate: "React + Redux - Профессиональная Разработка",
+            edu_vendor: "Udemy",
+            link: "https://www.udemy.com/certificate/UC-155afa37-31e5-41d3-8433-f5e095c11619",
+            date: "06.2020",
+            skills: ["React", "Redux", "React Router", "Redux Middleware"],
+        },
+    ]
+    const educations_en = [
+        {
+            edu_institution: "ESI SB RAS",
+            full: "Institute of Energy Systems named after L.A. Melentyev",
+            edu_level: "Postgraduate studies (without PhD defense)",
+            period: "09.2014 - 09.2018",
+        },
+        {
+            edu_institution: "INRTU",
+            full: "IRKUTSK NATIONAL RESEARCH TECHNICAL UNIVERSITY",
+            edu_level: "Higher. Engineer",
+            edu_faculty: "Cybernetics",
+            edu_specialty: "Computers, Systems and Networks",
+            period: "09.2008 - 09.2014",
+        },
+
+    ]
+    const certification_en = [
+        {
+            edu_certificate: "Oracle Certified Associate, Java SE 8 Programmer",
+            edu_vendor: "Oracle",
+            link: "https://www.credly.com/badges/7aaefaa6-dbe0-4d71-9904-42c8b507e148",
+            date: "05.2019",
+            skills: ["Java", "Java 8 Date And Time API", "Java SE 8", "JDK 8", "Lambda Expressions"],
+        },
+        {
+            edu_certificate: "React + Redux - Professional Development",
+            edu_vendor: "Udemy",
+            link: "https://www.udemy.com/certificate/UC-155afa37-31e5-41d3-8433-f5e095c11619",
+            date: "06.2020",
+            skills: ["React", "Redux", "React Router", "Redux Middleware"],
+        },
+    ]
+
+    let educations = educations_ru
+    let certification = certification_ru
+    let labelsName = labelsName_ru;
+    let about_me = about_me_ru;
+    let work_places = work_places_ru;
+    let aboutMe = aboutMe_ru;
+    let soft_skills = soft_skills_ru;
+
+    //---<common helper>---
+
+    function createClassElement(className) {
+        const div = document.createElement("div");
+        div.className = className;
+        return div;
+    }
+
+    function createClassElements(...classNames) {
+        return classNames.map(className => createClassElement(className)
+        )
+    }
+
+    function createLinkNode(link, title = labelsName["link"]) {
+        let a = document.createElement('a');
+        let linkText = document.createTextNode(title);
+        a.appendChild(linkText);
+        a.title = title;
+        a.href = link;
+        return a;
+    }
+
+    function scrollTo(element) {
+        const height = document.getElementById("header").offsetHeight
+        window.scroll({
+            behavior: 'smooth',
+            left: 0,
+            top: element.offsetTop - height - 16
+        });
+    }
+
+    function subscribeScrollToOnClick(button_id, mark_id) {
+        document.getElementById(button_id).addEventListener('click', () => {
+            scrollTo(document.getElementById(mark_id));
+        });
+    }
+
+    function switchTheme() {
+        const body = document.getElementsByTagName("body")[0];
+        body.classList.toggle("darkTheme")
+        body.classList.toggle("lightTheme")
+        const button = document.getElementById("theme");
+        button.classList.toggle("iconDark")
+        button.classList.toggle("iconLight")
+    }
+
+    //---<skill helper>---
+
+    function createLevelElement(level) {
+        const [levelContainer, levelSkill] = createClassElements("levelContainer", "levelSkill");
+        levelSkill.style.width = `${level}%`;
+        levelContainer.appendChild(levelSkill);
+        return levelContainer;
+    }
+
+    function createSkillElement(skill, level) {
+        const tagSkill = createClassElement("tagSkill");
+        const labelSkill = document.createTextNode(skill);
+        tagSkill.appendChild(labelSkill);
+        if (level) {
+            const levelTag = createLevelElement(level);
+            tagSkill.appendChild(levelTag);
+        }
+        return tagSkill;
+    }
+
+    function createSkillElements(skills) {
+        return skills.map(skill => skill instanceof Array ? createSkillElement(...skill) : createSkillElement(skill))
+    }
+
+    function createContainerWithContent(className, content) {
+        const [container, element] = createClassElements("labelContainer", className)
+        const contented = typeof content === "string" ? document.createTextNode(content) : content
+        element.appendChild(contented)
+        container.appendChild(element)
+        return container;
+    }
+
+    function createContainerWithLabel(className, label, value) {
+        const [container, element, labelItem] = createClassElements("labelContainer flex", className, "labelItem")
+        labelItem.appendChild(document.createTextNode(label))
+        const node = typeof value === "string" ? document.createTextNode(value) : value
+        element.appendChild(node)
+        container.appendChild(labelItem)
+        container.appendChild(element)
+        return container
+    }
+
+    function getIconLabelElementByKey(key, value) {
+        let classNames = "";
+        switch (key) {
+            case "my_name":
+                classNames = "iconPerson";
+                break;
+            case "company_name":
+                classNames = "iconWork";
+                break;
+            case "project_name":
+                classNames = "iconProject";
+                break;
+            case "edu_institution":
+                classNames = "iconSchool";
+                break;
+            case "edu_certificate":
+                classNames = " iconCert";
+                break;
+            case "eMail":
+                classNames = "iconEmail";
+                break;
+            case "tel":
+                classNames = "iconPhone";
+                break;
+            case "city":
+                classNames = "iconLocation";
+                break;
+            case "age":
+                classNames = "iconAge";
+                break;
+            case "work_type":
+                classNames = "iconCheck";
+                break;
+            case "speciality":
+                classNames = "iconWorkPosition";
+                break;
+            default:
+                return null;
+        }
+        classNames = `${key} withBeforeIcon ${classNames}`
+        return createContainerWithContent(classNames, value);
+    }
+
+    function getTagByKey(key, value) {
+        switch (key) {
+            case "link": {
+                const linkNode = createLinkNode(value, "ссылка");
+                return createContainerWithLabel(key, labelsName[key] || key, linkNode);
+            }
+            case "skills": {
+                const container = createClassElement("tags-container");
+                createSkillElements(value).forEach(skillTag => {
+                    container.appendChild(skillTag);
+                });
+                return container;
+            }
+            case "projects": {
+                const container = createClassElement("projectContainer");
+                const tags = getElementsByArray(value, "projectElement")
+                tags.forEach(tag => {
+                    container.appendChild(tag)
+                })
+                return container;
+            }
+            default:
+                return createContainerWithLabel(key, labelsName[key] || key, value);
+        }
+    }
+
+    //---<work helper>---
+    function getElementsByArray(nodeArray, className) {
+        return nodeArray.map(
+            node => {
+                const container = createClassElement(className);
+                for (let key in node) {
+                    if (node.hasOwnProperty(key)) {
+                        const value = node[key];
+                        let tag = getIconLabelElementByKey(key, value) || getTagByKey(key, value);
+                        container.appendChild(tag)
+                    }
+                }
+                return container
+            })
+    }
+
+    function setSkills(element, skills) {
+        const skillTags = createSkillElements(skills);
+        skillTags.forEach(skillTag => {
+            element.appendChild(skillTag);
+        });
+    }
+
+
+    function mountContentByArray(dataArray, id_container, wrapperClassName = "", mark_id = null, markClassName = "", markText) {
+        const container = document.getElementById(id_container);
+        const elementsArray = getElementsByArray(dataArray, wrapperClassName);
+        if (mark_id) {
+            const mark = createClassElement(markClassName)
+            mark.id = mark_id;
+            if (markText) {
+                mark.appendChild(document.createTextNode(markText))
+            }
+            container.appendChild(mark);
+        }
+        elementsArray.forEach(element => {
+                container.appendChild(element)
+            }
+        )
+    }
+
+    function subscribeNavigateButtons() {
+        subscribeScrollToOnClick("experience", "mark_experience");
+        subscribeScrollToOnClick("education", "mark_education");
+        subscribeScrollToOnClick("certification", "mark_certification");
+
+        const themeButton = document.getElementById("theme");
+        themeButton.addEventListener("click", switchTheme);
+        const languageButton = document.getElementById("language");
+        languageButton.addEventListener("click", changeLanguage);
+    }
+
+    function createAboutMeContent(){
+        const [element, content] = createClassElements("aboutMe shadow m p br", "textContent");
+        const labelSoft = createContainerWithContent("labelBlock withBeforeIcon iconAboutSelf", labelsName.ui_about);
+        content.innerText = aboutMe;
+        element.appendChild(labelSoft)
+        element.appendChild(content)
+        return element;
+    }
+
+    function buildPage() {
+        const n = labelsName;
+        mountContentByArray(about_me, "aboutMe");
+
+        const rightContainer = document.getElementById("rightContainer");
+        const [hard, hardTags, soft, softTags ] = createClassElements("shadow p m br","tags-container", "shadow p m br","tags-container" );
+
+        const labelHard = createContainerWithContent("labelBlock withBeforeIcon iconHard", n.ui_hard_skills);
+        setSkills(hardTags, hard_skills);
+        hard.appendChild(labelHard)
+        hard.appendChild(hardTags)
+
+        const labelSoft = createContainerWithContent("labelBlock withBeforeIcon iconSoft", n.ui_soft_skills);
+        setSkills(softTags, soft_skills);
+        soft.appendChild(labelSoft)
+        soft.appendChild(softTags)
+
+        rightContainer.appendChild(hard)
+        rightContainer.appendChild(soft)
+        rightContainer.appendChild(createAboutMeContent());
+
+        document.getElementById("life").appendChild(createAboutMeContent());
+
+        mountContentByArray(work_places, "life", "shadow m p br", "mark_experience", "chapter p", n.ui_experience)
+        mountContentByArray(educations, "life", "shadow m p br", "mark_education", "chapter p", n.ui_education)
+        mountContentByArray(certification, "life", "shadow m p br", "mark_certification", "chapter p", n.ui_cert)
+
+        document.getElementById("experience").innerText = n.ui_experience;
+        document.getElementById("education").innerText = n.ui_education;
+        document.getElementById("certification").innerText = n.ui_cert;
+        document.getElementById("language").innerText = n.ui_lang;
+    }
+
+    //---<main>---
+    (function main() {
+        buildPage();
+        subscribeNavigateButtons();
+    })()
+
+    function removeChildren(element_id) {
+        const myNode = document.getElementById(element_id);
+        while (myNode.firstChild) {
+            myNode.removeChild(myNode.lastChild);
+        }
+        return removeChildren;
+    }
+
+    function changeLanguage() {
+        const isEn = labelsName === labelsName_en;
+        soft_skills= isEn ? soft_skills_ru: soft_skills_en;
+        labelsName = isEn ? labelsName_ru : labelsName_en;
+        about_me = isEn ? about_me_ru : about_me_en;
+        aboutMe = isEn ? aboutMe_ru : aboutMe_en;
+        work_places = isEn ? work_places_ru : work_places_en;
+        educations = isEn ? educations_ru : educations_en;
+        certification = isEn ? certification_ru : certification_en;
+        removeChildren("aboutMe")("rightContainer")("life");
+        buildPage();
+    }
+
+</script>
+</body>
+</html>
